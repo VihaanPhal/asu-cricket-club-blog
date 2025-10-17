@@ -24,39 +24,37 @@ export default function PlayersPage() {
   }
 
   return (
-    <>
+    <div className="mx-auto max-w-7xl px-6 py-8">
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        {/* Page header */}
-        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <div className="flex items-center space-x-4">
-            {/* Logo placeholder */}
-            <div className="h-10 w-10 rounded-full ring-2 ring-white shadow bg-gradient-to-b from-primary-400 to-gray-50 dark:from-primary-500 dark:to-gray-800 flex items-center justify-center">
-              <span className="text-primary-600 dark:text-primary-400 font-bold text-sm">🏏</span>
-            </div>
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100">
-                ASU Cricket — Players
-              </h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Squad roster
-              </p>
-            </div>
-          </div>
-        </div>
+          {/* Page header */}
+           <header className="bg-transparent shadow-none border-0 static z-auto">
+             <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+               <div>
+                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100">
+                   ASU Cricket — Players
+                 </h1>
+                 <p className="text-sm text-gray-600 dark:text-gray-400">
+                   Squad roster
+                 </p>
+               </div>
+             </div>
+           </header>
 
-        {/* Players grid */}
-        <div className="pt-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
-            {players.map((player) => (
-              <PlayerCard
-                key={player.id}
-                player={player}
-                onOpen={handleOpenModal}
-              />
-            ))}
-          </div>
+          {/* Players grid */}
+          <section className="bg-transparent">
+            <div className="pt-8 px-4 sm:px-8 lg:px-12 xl:px-16">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
+                {players.map((player) => (
+                  <PlayerCard
+                    key={player.id}
+                    player={player}
+                    onOpen={handleOpenModal}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
         </div>
-      </div>
 
       {/* Modal */}
       <PlayerModal
@@ -65,6 +63,6 @@ export default function PlayersPage() {
         onClose={handleCloseModal}
         initialFocusRef={triggerButtonRef}
       />
-    </>
+    </div>
   )
 }

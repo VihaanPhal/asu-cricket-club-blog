@@ -3,178 +3,177 @@
 import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import Image from 'next/image'
-import { Player } from '@/data/players'
+import type { Player } from '@/data/players'
 
-interface PlayerModalProps {
+type Props = {
   open: boolean
   player?: Player
   onClose: () => void
   initialFocusRef?: React.RefObject<HTMLElement>
 }
 
-export default function PlayerModal({ open, player, onClose, initialFocusRef }: PlayerModalProps) {
-  const closeButtonRef = useRef<HTMLButtonElement>(null)
-  const modalRef = useRef<HTMLDivElement>(null)
+export default function PlayerModal({ open, player, onClose, initialFocusRef }: Props) {
+  const rootRef = useRef<HTMLDivElement | null>(null)
+  const closeBtnRef = useRef<HTMLButtonElement | null>(null)
 
-  // Handle ESC key
   useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && open) {
-        onClose()
-      }
-    }
-
-    if (open) {
-      document.addEventListener('keydown', handleEscape)
-      // Prevent body scroll
-      document.body.style.overflow = 'hidden'
-    }
-
+    if (!open) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
     return () => {
-      document.removeEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = prev
     }
+  }, [open])
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'Tab') trapFocus(e)
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
   }, [open, onClose])
 
-  // Focus management
-  useEffect(() => {
-    if (open) {
-      // Focus the close button when modal opens
-      setTimeout(() => {
-        closeButtonRef.current?.focus()
-      }, 100)
-    } else if (initialFocusRef?.current) {
-      // Return focus to the triggering button when modal closes
-      initialFocusRef.current.focus()
+  const trapFocus = (e: KeyboardEvent) => {
+    const root = rootRef.current
+    if (!root) return
+    const focusables = Array.from(
+      root.querySelectorAll<HTMLElement>(
+        'a,button,textarea,input,select,[tabindex]:not([tabindex="-1"])'
+      )
+    ).filter((el) => !el.hasAttribute('disabled') && !el.getAttribute('aria-hidden'))
+    if (!focusables.length) return
+    const first = focusables[0]
+    const last = focusables[focusables.length - 1]
+    const active = document.activeElement as HTMLElement | null
+    if (e.shiftKey && active === first) {
+      e.preventDefault()
+      last.focus()
+    } else if (!e.shiftKey && active === last) {
+      e.preventDefault()
+      first.focus()
     }
+  }
+
+  useEffect(() => {
+    if (open) (closeBtnRef.current ?? initialFocusRef?.current)?.focus()
   }, [open, initialFocusRef])
 
-  // Handle backdrop click
-  const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (event.target === event.currentTarget) {
-      onClose()
-    }
-  }
+  if (!open || !player) return null
 
-  if (!open || !player) {
-    return null
-  }
-
-  const modalContent = (
-    <div
-      className="fixed inset-0 z-[var(--z-80)] bg-black/50 flex items-center justify-center p-4 sm:p-6"
-      onClick={handleBackdropClick}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="player-modal-title"
-    >
+  return createPortal(
+    <div className="fixed inset-0 z-[var(--z-80)] grid place-items-center p-4 sm:p-6">
+      {/* Backdrop */}
       <div
-        ref={modalRef}
-        className="w-full max-w-3xl rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-2xl"
+        className="absolute inset-0 bg-black/60"
+        aria-hidden="true"
+        role="button"
+        tabIndex={-1}
+        onClick={onClose}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') onClose()
+        }}
+      />
+
+      <div
+        ref={rootRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="player-modal-title"
+        className="w-full max-w-4xl overflow-hidden rounded-2xl border border-gray-200 bg-white text-gray-900 shadow-2xl backdrop-blur transition-all dark:border-gray-800 dark:bg-gray-900/95 dark:text-gray-100"
       >
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 p-4 sm:p-5">
-          <h2
-            id="player-modal-title"
-            className="text-lg sm:text-xl font-extrabold text-gray-900 dark:text-gray-100"
-          >
-            {player.name}
-          </h2>
+        <div className="flex items-center justify-between border-b border-gray-200 px-5 py-4 dark:border-gray-800">
+          <div className="flex items-center gap-3">
+            <div className="bg-primary-500 grid h-9 w-9 place-items-center rounded-full text-sm font-bold text-gray-50">
+              #{player.jersey || 0}
+            </div>
+            <div>
+              <h2 id="player-modal-title" className="text-lg leading-none font-extrabold">
+                {player.name}
+              </h2>
+              <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">{player.role}</p>
+            </div>
+          </div>
           <button
-            ref={closeButtonRef}
+            ref={closeBtnRef}
             onClick={onClose}
-            className="rounded-md p-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 transition-colors"
-            aria-label="Close player profile"
+            aria-label="Close"
+            className="focus-visible:outline-primary-500 rounded-md p-2 text-gray-600 hover:text-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 dark:text-gray-400 dark:hover:text-gray-200"
           >
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
+            ✕
           </button>
         </div>
 
-        {/* Body */}
-        <div className="grid sm:grid-cols-[240px,1fr] gap-4 sm:gap-6 p-4 sm:p-5">
-          {/* Left: Image */}
-          <div className="flex justify-center sm:justify-start">
-            <div className="relative w-48 h-60 sm:w-60 sm:h-72 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden bg-gray-100 dark:bg-gray-800">
+        {/* Content */}
+        <div className="px-6 pt-5 pb-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-950/70">
               <Image
                 src={player.image}
-                alt={`${player.name} - ${player.role}`}
-                fill
-                className="object-cover"
+                alt={player.name}
+                width={1200}
+                height={1200}
+                className="h-auto max-h-80 w-full object-contain object-left"
+                sizes="(min-width: 640px) 50vw, 100vw"
+                priority={false}
               />
+            </div>
+
+            <div className="flex flex-col justify-between">
+              <dl className="grid grid-cols-1 gap-x-8 gap-y-4 text-sm sm:grid-cols-2">
+                <div>
+                  <dt className="text-gray-500 dark:text-gray-400">Batting</dt>
+                  <dd className="font-semibold">{player.battingStyle}</dd>
+                </div>
+                <div>
+                  <dt className="text-gray-500 dark:text-gray-400">Bowling</dt>
+                  <dd className="font-semibold">{player.bowlingStyle}</dd>
+                </div>
+                <div>
+                  <dt className="text-gray-500 dark:text-gray-400">Year</dt>
+                  <dd className="font-semibold">{player.year}</dd>
+                </div>
+                <div>
+                  <dt className="text-gray-500 dark:text-gray-400">Program</dt>
+                  <dd className="font-semibold">{player.program}</dd>
+                </div>
+              </dl>
+
+              {player.tags?.length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {player.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-gray-200 bg-gray-100 px-2.5 py-1 text-xs text-gray-700 dark:border-gray-700 dark:bg-gray-800/70 dark:text-gray-200"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {player.bio && (
+                <p className="mt-4 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+                  {player.bio}
+                </p>
+              )}
             </div>
           </div>
 
-          {/* Right: Details */}
-          <div className="space-y-4">
-            {/* Key/Value grid */}
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-              <div>
-                <dt className="text-xs text-gray-500 dark:text-gray-400">Jersey Number</dt>
-                <dd className="text-sm text-gray-900 dark:text-gray-100">#{player.jersey}</dd>
-              </div>
-              <div>
-                <dt className="text-xs text-gray-500 dark:text-gray-400">Role</dt>
-                <dd className="text-sm text-gray-900 dark:text-gray-100">{player.role}</dd>
-              </div>
-              <div>
-                <dt className="text-xs text-gray-500 dark:text-gray-400">Batting Style</dt>
-                <dd className="text-sm text-gray-900 dark:text-gray-100">{player.battingStyle}</dd>
-              </div>
-              <div>
-                <dt className="text-xs text-gray-500 dark:text-gray-400">Bowling Style</dt>
-                <dd className="text-sm text-gray-900 dark:text-gray-100">{player.bowlingStyle}</dd>
-              </div>
-              <div>
-                <dt className="text-xs text-gray-500 dark:text-gray-400">Year</dt>
-                <dd className="text-sm text-gray-900 dark:text-gray-100">{player.year}</dd>
-              </div>
-              <div>
-                <dt className="text-xs text-gray-500 dark:text-gray-400">Program</dt>
-                <dd className="text-sm text-gray-900 dark:text-gray-100">{player.program}</dd>
-              </div>
-            </div>
-
-            {/* Tags */}
-            <div>
-              <dt className="text-xs text-gray-500 dark:text-gray-400 mb-2">Tags</dt>
-              <div className="flex flex-wrap gap-2">
-                {player.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="inline-flex items-center border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-xs rounded-full px-2 py-1 text-gray-700 dark:text-gray-300"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Bio */}
-            <div>
-              <dt className="text-xs text-gray-500 dark:text-gray-400 mb-2">Bio</dt>
-              <dd className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                {player.bio}
-              </dd>
-            </div>
+          {/* Actions */}
+          <div className="mt-6 flex justify-end gap-3">
+            <a
+              href={`/players/${player.id}`}
+              className="focus-visible:outline-primary-500 inline-flex items-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-800/70"
+            >
+              Full profile
+            </a>
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
-
-  // Portal to document.body
-  return createPortal(modalContent, document.body)
 }

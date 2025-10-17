@@ -19,41 +19,54 @@ export default function PlayerCard({ player, onOpen }: PlayerCardProps) {
   }
 
   return (
-    <div className="group rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow transition hover:shadow-lg">
-      {/* Image container */}
-      <div className="relative aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-900">
-        <Image
-          src={player.image}
-          alt={`${player.name} - ${player.role}`}
-          fill
-          className="h-full w-full object-cover"
-          loading="lazy"
-        />
-        {/* Jersey badge */}
-        <div className="absolute top-2 left-2 inline-flex items-center rounded-md bg-primary-500 text-gray-50 px-2 py-1 text-xs font-semibold shadow">
+    <article
+      className="
+        group relative overflow-hidden rounded-2xl
+        border border-gray-200 bg-white shadow-sm hover:shadow-md
+        dark:border-gray-700 dark:bg-gray-900/60
+        transition-all duration-200 hover:-translate-y-0.5
+      "
+    >
+      <div
+        className="
+          relative aspect-[4/3] overflow-hidden rounded-t-2xl
+          bg-gray-100 flex items-center justify-center
+          dark:bg-gray-900
+        "
+      >
+        <span
+          className="
+            absolute left-2 top-2 rounded-md px-2 py-1 text-xs font-semibold
+            bg-primary-500 text-gray-50
+            dark:bg-primary-600/90
+          "
+        >
           #{player.jersey}
+        </span>
+
+        <div className="h-12 w-12 rounded-full bg-primary-500 dark:bg-primary-600/90 flex items-center justify-center">
+          <span className="text-white font-bold text-lg">🏏</span>
         </div>
       </div>
-      
-      {/* Card body */}
-      <div className="p-3">
-        <h3 className="text-base font-bold text-gray-900 dark:text-gray-100">
-          {player.name}
-        </h3>
-        <p className="text-xs text-gray-600 dark:text-gray-400">
-          {player.role}
-        </p>
-        
-        {/* View profile button */}
+
+      <div className="px-4 pb-4 pt-3 text-center">
+        <h3 className="font-semibold text-gray-900 dark:text-gray-100">{player.name}</h3>
+        <p className="text-sm text-gray-600 dark:text-gray-400">{player.role}</p>
+
         <button
           onClick={handleClick}
           onKeyDown={handleKeyDown}
-          className="mt-3 inline-flex items-center rounded-lg bg-primary-500 px-3 py-2 text-sm font-semibold text-white hover:bg-primary-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 transition-colors"
+          className="
+            mt-3 inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium
+            bg-primary-500 text-white hover:bg-primary-600
+            focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500
+            dark:bg-primary-600/90 dark:hover:bg-primary-500/90
+          "
           aria-label={`View profile for ${player.name}`}
         >
           View profile
         </button>
       </div>
-    </div>
+    </article>
   )
 }
