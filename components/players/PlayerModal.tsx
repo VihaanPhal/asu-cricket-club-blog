@@ -9,7 +9,7 @@ type Props = {
   open: boolean
   player?: Player
   onClose: () => void
-  initialFocusRef?: React.RefObject<HTMLElement>
+  initialFocusRef?: React.RefObject<HTMLElement | null>
 }
 
 export default function PlayerModal({ open, player, onClose, initialFocusRef }: Props) {

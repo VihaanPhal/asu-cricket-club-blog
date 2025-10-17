@@ -26,35 +26,29 @@ export default function PlayersPage() {
   return (
     <div className="mx-auto max-w-7xl px-6 py-8">
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
-          {/* Page header */}
-           <header className="bg-transparent shadow-none border-0 static z-auto">
-             <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-               <div>
-                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100">
-                   ASU Cricket — Players
-                 </h1>
-                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                   Squad roster
-                 </p>
-               </div>
-             </div>
-           </header>
-
-          {/* Players grid */}
-          <section className="bg-transparent">
-            <div className="pt-8 px-4 sm:px-8 lg:px-12 xl:px-16">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
-                {players.map((player) => (
-                  <PlayerCard
-                    key={player.id}
-                    player={player}
-                    onOpen={handleOpenModal}
-                  />
-                ))}
-              </div>
+        {/* Page header */}
+        <header className="static z-auto border-0 bg-transparent shadow-none">
+          <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+            <div>
+              <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl dark:text-gray-100">
+                Goated Players
+              </h1>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Squad roster</p>
             </div>
-          </section>
-        </div>
+          </div>
+        </header>
+
+        {/* Players grid */}
+        <section className="bg-transparent">
+          <div className="pt-8 pb-12">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-2 xl:grid-cols-3">
+              {players.map((player) => (
+                <PlayerCard key={player.id} player={player} onOpen={handleOpenModal} />
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
 
       {/* Modal */}
       <PlayerModal
