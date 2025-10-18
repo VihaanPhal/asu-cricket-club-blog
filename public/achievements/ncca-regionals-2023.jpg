@@ -1,0 +1,8 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#003f87"/>
+  <rect x="100" y="100" width="600" height="400" fill="#FDB913"/>
+  <text x="400" y="250" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#003f87" text-anchor="middle">NCCA Regionals</text>
+  <text x="400" y="310" font-family="Arial, sans-serif" font-size="36" fill="#000000" text-anchor="middle">Champions 2023</text>
+  <text x="400" y="360" font-family="Arial, sans-serif" font-size="24" fill="#003f87" text-anchor="middle">El Monte, Los Angeles</text>
+  <circle cx="400" cy="440" r="40" fill="#FFD700"/>
+</svg>

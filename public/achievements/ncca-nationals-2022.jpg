@@ -1,0 +1,8 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#8C1D40"/>
+  <rect x="100" y="100" width="600" height="400" fill="#FFC627"/>
+  <text x="400" y="250" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#8C1D40" text-anchor="middle">NCCA Nationals</text>
+  <text x="400" y="310" font-family="Arial, sans-serif" font-size="36" fill="#000000" text-anchor="middle">Champions 2022</text>
+  <text x="400" y="360" font-family="Arial, sans-serif" font-size="28" fill="#8C1D40" text-anchor="middle">Houston, Texas</text>
+  <polygon points="400,420 450,450 435,490 365,490 350,450" fill="#FFD700"/>
+</svg>
