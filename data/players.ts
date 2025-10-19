@@ -24,7 +24,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Team captain. Placeholder bio.',
     tags: ['Captain', 'Leader'],
-    image: '/static/images/all_rounder.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&h=600&fit=crop',
   },
   {
     id: 'vihaan-phal',
@@ -37,7 +37,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Vice-captain and primary wicket-keeper. Placeholder bio.',
     tags: ['WK', 'Vice-Captain'],
-    image: '/static/images/batsman.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1624526267942-ab0ff8a3e972?w=800&h=600&fit=crop',
   },
   {
     id: 'evin-hewageegana',
@@ -50,7 +50,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Placeholder bio.',
     tags: ['All-Rounder'],
-    image: '/static/images/all_rounder.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&h=600&fit=crop',
   },
   {
     id: 'aadi-pathak',
@@ -63,7 +63,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Placeholder bio.',
     tags: ['All-Rounder'],
-    image: '/static/images/all_rounder.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1589487391730-58f20eb2c308?w=800&h=600&fit=crop',
   },
   {
     id: 'pravar-chauhan',
@@ -76,7 +76,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Team manager and player. Placeholder bio.',
     tags: ['Team Manager', 'Batsman'],
-    image: '/static/images/batsman.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=800&h=600&fit=crop',
   },
   {
     id: 'tanishq-mishra',
@@ -89,7 +89,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Placeholder bio.',
     tags: ['Left-Arm', 'Bowler'],
-    image: '/static/images/bowler.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=800&h=600&fit=crop',
   },
   {
     id: 'aditya-batra',
@@ -102,7 +102,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Placeholder bio.',
     tags: ['Pace'],
-    image: '/static/images/bowler.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=800&h=600&fit=crop',
   },
   {
     id: 'prajith-beeravelli',
@@ -115,7 +115,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Placeholder bio.',
     tags: ['All-Rounder'],
-    image: '/static/images/all_rounder.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&h=600&fit=crop',
   },
   {
     id: 'ved-agarwal',
@@ -128,7 +128,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Placeholder bio.',
     tags: ['All-Rounder'],
-    image: '/static/images/all_rounder.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1589487391730-58f20eb2c308?w=800&h=600&fit=crop',
   },
   {
     id: 'aarav-kapoor',
@@ -141,7 +141,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Placeholder bio.',
     tags: ['All-Rounder'],
-    image: '/static/images/all_rounder.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&h=600&fit=crop',
   },
   {
     id: 'yuvraj-bhatia',
@@ -154,7 +154,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Placeholder bio.',
     tags: ['All-Rounder'],
-    image: '/static/images/all_rounder.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1589487391730-58f20eb2c308?w=800&h=600&fit=crop',
   },
   {
     id: 'abdul-rehman',
@@ -167,7 +167,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Placeholder bio.',
     tags: ['Pace'],
-    image: '/static/images/bowler.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=800&h=600&fit=crop',
   },
   {
     id: 'anshul-kaithakkal',
@@ -180,7 +180,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Placeholder bio.',
     tags: ['Middle-Order'],
-    image: '/static/images/batsman.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=800&h=600&fit=crop',
   },
   {
     id: 'keshava-subramanian',
@@ -193,7 +193,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Placeholder bio.',
     tags: ['Bowler'],
-    image: '/static/images/bowler.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=800&h=600&fit=crop',
   },
   {
     id: 'anshul-kamble',
@@ -206,7 +206,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Placeholder bio.',
     tags: ['All-Rounder'],
-    image: '/static/images/all_rounder.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&h=600&fit=crop',
   },
   {
     id: 'parth-shah',
@@ -219,7 +219,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Placeholder bio.',
     tags: ['Bowler'],
-    image: '/static/images/bowler.svg?v=2',
+    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=800&h=600&fit=crop',
   },
   {
     id: 'shivam-singh',
@@ -232,7 +232,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Placeholder bio.',
     tags: ['All-Rounder'],
-    image: '/static/images/all_rounder.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1589487391730-58f20eb2c308?w=800&h=600&fit=crop',
   },
   {
     id: 'soorya-sathish',
@@ -245,7 +245,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Placeholder bio.',
     tags: ['Batsman'],
-    image: '/static/images/batsman.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=800&h=600&fit=crop',
   },
   {
     id: 'aryan-shetty',
@@ -258,7 +258,7 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Placeholder bio.',
     tags: ['All-Rounder'],
-    image: '/static/images/all_rounder.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&h=600&fit=crop',
   },
   {
     id: 'saiar-bahadur',
@@ -271,6 +271,6 @@ export const players: Player[] = [
     program: 'TBD',
     bio: 'Placeholder bio.',
     tags: ['All-Rounder'],
-    image: '/static/images/all_rounder.svg?v=3',
+    image: 'https://images.unsplash.com/photo-1589487391730-58f20eb2c308?w=800&h=600&fit=crop',
   },
 ]

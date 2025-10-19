@@ -4,15 +4,16 @@ import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import Image from 'next/image'
 import type { Player } from '@/data/players'
+import { Badge } from '@/components/components/ui/badge'
+import { X, ExternalLink } from 'lucide-react'
 
 type Props = {
   open: boolean
   player?: Player
   onClose: () => void
-  initialFocusRef?: React.RefObject<HTMLElement | null>
 }
 
-export default function PlayerModal({ open, player, onClose, initialFocusRef }: Props) {
+export default function PlayerModal({ open, player, onClose }: Props) {
   const rootRef = useRef<HTMLDivElement | null>(null)
   const closeBtnRef = useRef<HTMLButtonElement | null>(null)
 
@@ -57,16 +58,15 @@ export default function PlayerModal({ open, player, onClose, initialFocusRef }: 
   }
 
   useEffect(() => {
-    if (open) (closeBtnRef.current ?? initialFocusRef?.current)?.focus()
-  }, [open, initialFocusRef])
+    if (open) closeBtnRef.current?.focus()
+  }, [open])
 
   if (!open || !player) return null
 
   return createPortal(
-    <div className="fixed inset-0 z-[var(--z-80)] grid place-items-center p-4 sm:p-6">
-      {/* Backdrop */}
+    <div className="fixed inset-0 z-[var(--z-80)] flex items-center justify-center p-4">
       <div
-        className="absolute inset-0 bg-black/60"
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         aria-hidden="true"
         role="button"
         tabIndex={-1}
@@ -81,95 +81,126 @@ export default function PlayerModal({ open, player, onClose, initialFocusRef }: 
         role="dialog"
         aria-modal="true"
         aria-labelledby="player-modal-title"
-        className="w-full max-w-4xl overflow-hidden rounded-2xl border border-gray-200 bg-white text-gray-900 shadow-2xl backdrop-blur transition-all dark:border-gray-800 dark:bg-gray-900/95 dark:text-gray-100"
+        className="animate-in fade-in zoom-in-95 relative w-full max-w-4xl overflow-hidden rounded-2xl border border-gray-200/60 bg-white/95 shadow-2xl backdrop-blur-xl duration-200 dark:border-gray-800/60 dark:bg-gray-900/95"
       >
-        {/* Header */}
-        <div className="flex items-center justify-between border-b border-gray-200 px-5 py-4 dark:border-gray-800">
-          <div className="flex items-center gap-3">
-            <div className="bg-primary-500 grid h-9 w-9 place-items-center rounded-full text-sm font-bold text-gray-50">
-              #{player.jersey || 0}
+        <button
+          ref={closeBtnRef}
+          onClick={onClose}
+          className="focus-visible:ring-primary-500 absolute top-4 right-4 z-10 rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:ring-2 focus-visible:outline-none dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100"
+          aria-label="Close"
+        >
+          <X className="h-5 w-5" />
+        </button>
+
+        <div className="grid grid-cols-1 gap-0 md:grid-cols-5">
+          <div className="relative min-h-[300px] md:col-span-2 md:min-h-[500px]">
+            <Image
+              src={player.image}
+              alt={player.name}
+              fill
+              className="object-cover object-center"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent" />
+
+            <div className="absolute top-6 left-6">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-900/90 shadow-lg backdrop-blur-sm dark:bg-gray-100/90">
+                <span className="text-lg font-bold text-white dark:text-gray-900">
+                  #{player.jersey}
+                </span>
+              </div>
             </div>
-            <div>
-              <h2 id="player-modal-title" className="text-lg leading-none font-extrabold">
+          </div>
+
+          <div className="max-h-[600px] overflow-y-auto p-8 md:col-span-3">
+            <div className="mb-6">
+              <h2
+                id="player-modal-title"
+                className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
+              >
                 {player.name}
               </h2>
-              <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">{player.role}</p>
-            </div>
-          </div>
-          <button
-            ref={closeBtnRef}
-            onClick={onClose}
-            aria-label="Close"
-            className="focus-visible:outline-primary-500 rounded-md p-2 text-gray-600 hover:text-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 dark:text-gray-400 dark:hover:text-gray-200"
-          >
-            ✕
-          </button>
-        </div>
-
-        {/* Content */}
-        <div className="px-6 pt-5 pb-6">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-950/70">
-              <Image
-                src={player.image}
-                alt={player.name}
-                width={1200}
-                height={1200}
-                className="h-auto max-h-80 w-full object-contain object-left"
-                sizes="(min-width: 640px) 50vw, 100vw"
-                priority={false}
-              />
+              <p className="mt-2 text-base text-gray-600 dark:text-gray-400">{player.role}</p>
             </div>
 
-            <div className="flex flex-col justify-between">
-              <dl className="grid grid-cols-1 gap-x-8 gap-y-4 text-sm sm:grid-cols-2">
-                <div>
-                  <dt className="text-gray-500 dark:text-gray-400">Batting</dt>
-                  <dd className="font-semibold">{player.battingStyle}</dd>
-                </div>
-                <div>
-                  <dt className="text-gray-500 dark:text-gray-400">Bowling</dt>
-                  <dd className="font-semibold">{player.bowlingStyle}</dd>
-                </div>
-                <div>
-                  <dt className="text-gray-500 dark:text-gray-400">Year</dt>
-                  <dd className="font-semibold">{player.year}</dd>
-                </div>
-                <div>
-                  <dt className="text-gray-500 dark:text-gray-400">Program</dt>
-                  <dd className="font-semibold">{player.program}</dd>
-                </div>
-              </dl>
+            <div className="mb-6 flex flex-wrap gap-2">
+              {player.tags.map((tag) => (
+                <Badge
+                  key={tag}
+                  variant="outline"
+                  className="rounded-lg border-gray-200 bg-gray-50 px-3 py-1 text-sm font-medium text-gray-700 dark:border-gray-800 dark:bg-gray-800 dark:text-gray-300"
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
 
-              {player.tags?.length > 0 && (
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {player.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-gray-200 bg-gray-100 px-2.5 py-1 text-xs text-gray-700 dark:border-gray-700 dark:bg-gray-800/70 dark:text-gray-200"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+            <div className="space-y-6">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="rounded-lg border border-gray-200/60 bg-gray-50/50 p-4 dark:border-gray-800/60 dark:bg-gray-900/30">
+                  <dt className="text-xs font-medium tracking-wider text-gray-500 uppercase dark:text-gray-400">
+                    Batting
+                  </dt>
+                  <dd className="mt-1.5 text-sm font-semibold text-gray-900 dark:text-gray-100">
+                    {player.battingStyle}
+                  </dd>
                 </div>
-              )}
+
+                <div className="rounded-lg border border-gray-200/60 bg-gray-50/50 p-4 dark:border-gray-800/60 dark:bg-gray-900/30">
+                  <dt className="text-xs font-medium tracking-wider text-gray-500 uppercase dark:text-gray-400">
+                    Bowling
+                  </dt>
+                  <dd className="mt-1.5 text-sm font-semibold text-gray-900 dark:text-gray-100">
+                    {player.bowlingStyle}
+                  </dd>
+                </div>
+
+                <div className="rounded-lg border border-gray-200/60 bg-gray-50/50 p-4 dark:border-gray-800/60 dark:bg-gray-900/30">
+                  <dt className="text-xs font-medium tracking-wider text-gray-500 uppercase dark:text-gray-400">
+                    Year
+                  </dt>
+                  <dd className="mt-1.5 text-sm font-semibold text-gray-900 dark:text-gray-100">
+                    {player.year}
+                  </dd>
+                </div>
+
+                <div className="rounded-lg border border-gray-200/60 bg-gray-50/50 p-4 dark:border-gray-800/60 dark:bg-gray-900/30">
+                  <dt className="text-xs font-medium tracking-wider text-gray-500 uppercase dark:text-gray-400">
+                    Program
+                  </dt>
+                  <dd className="mt-1.5 text-sm font-semibold text-gray-900 dark:text-gray-100">
+                    {player.program}
+                  </dd>
+                </div>
+              </div>
 
               {player.bio && (
-                <p className="mt-4 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
-                  {player.bio}
-                </p>
+                <div className="rounded-lg border border-gray-200/60 bg-gray-50/50 p-5 dark:border-gray-800/60 dark:bg-gray-900/30">
+                  <h3 className="mb-2 text-xs font-medium tracking-wider text-gray-500 uppercase dark:text-gray-400">
+                    About
+                  </h3>
+                  <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+                    {player.bio}
+                  </p>
+                </div>
               )}
             </div>
-          </div>
 
-          {/* Actions */}
-          <div className="mt-6 flex justify-end gap-3">
-            <a
-              href={`/players/${player.id}`}
-              className="focus-visible:outline-primary-500 inline-flex items-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-800/70"
-            >
-              Full profile
-            </a>
+            <div className="mt-8 flex items-center gap-3">
+              <a
+                href={`/players/${player.id}`}
+                className="focus-visible:ring-primary-500 inline-flex items-center gap-2 rounded-lg bg-gray-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800 focus-visible:ring-2 focus-visible:outline-none dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200"
+              >
+                View full profile
+                <ExternalLink className="h-4 w-4" />
+              </a>
+              <button
+                onClick={onClose}
+                className="focus-visible:ring-primary-500 inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus-visible:ring-2 focus-visible:outline-none dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-800"
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </div>

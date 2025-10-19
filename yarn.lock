@@ -3052,7 +3052,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-slot@npm:1.2.3":
+"@radix-ui/react-slot@npm:1.2.3, @radix-ui/react-slot@npm:^1.2.3":
   version: 1.2.3
   resolution: "@radix-ui/react-slot@npm:1.2.3"
   dependencies:
@@ -4679,6 +4679,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"class-variance-authority@npm:^0.7.1":
+  version: 0.7.1
+  resolution: "class-variance-authority@npm:0.7.1"
+  dependencies:
+    clsx: ^2.1.1
+  checksum: e05ba26ef9ec38f7c675047ce366b067d60af6c954dba08f7802af19a9460a534ae752d8fe1294fff99d0fa94a669b16ccebd87e8a20f637c0736cf2751dd2c5
+  languageName: node
+  linkType: hard
+
 "clean-css@npm:^5.0.0":
   version: 5.3.3
   resolution: "clean-css@npm:5.3.3"
@@ -4747,7 +4756,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:^2.0.0":
+"clsx@npm:^2.0.0, clsx@npm:^2.1.1":
   version: 2.1.1
   resolution: "clsx@npm:2.1.1"
   checksum: acd3e1ab9d8a433ecb3cc2f6a05ab95fe50b4a3cfc5ba47abb6cbf3754585fcb87b84e90c822a1f256c4198e3b41c7f6c391577ffc8678ad587fc0976b24fd57
@@ -8035,6 +8044,15 @@ __metadata:
   dependencies:
     yallist: ^3.0.2
   checksum: c154ae1cbb0c2206d1501a0e94df349653c92c8cbb25236d7e85190bcaf4567a03ac6eb43166fabfa36fd35623694da7233e88d9601fbf411a9a481d85dbd2cb
+  languageName: node
+  linkType: hard
+
+"lucide-react@npm:^0.546.0":
+  version: 0.546.0
+  resolution: "lucide-react@npm:0.546.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: deac507fc3a220692e6270e0f39decc79ad1b8808b4edefbce419e970fc23e12e98ea75d0039e353aac8ca12102bffec6622fec0c5445e82758d2497ea5e4b4c
   languageName: node
   linkType: hard
 
@@ -11525,6 +11543,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tailwind-merge@npm:^3.3.1":
+  version: 3.3.1
+  resolution: "tailwind-merge@npm:3.3.1"
+  checksum: ace3675227d86f1def95b25b7f6793268a6ab2f340b43ef64ad25646588d2b1d87714cd60db6947bfdb5bb85be3bb6ce1802021620c541ef7a9c3faa05915f2b
+  languageName: node
+  linkType: hard
+
 "tailwind-nextjs-starter-blog@workspace:.":
   version: 0.0.0-use.local
   resolution: "tailwind-nextjs-starter-blog@workspace:."
@@ -11533,6 +11558,7 @@ __metadata:
     "@eslint/js": ^9.16.0
     "@headlessui/react": 2.2.0
     "@next/bundle-analyzer": 15.2.4
+    "@radix-ui/react-slot": ^1.2.3
     "@svgr/webpack": ^8.0.1
     "@tailwindcss/forms": ^0.5.9
     "@tailwindcss/postcss": ^4.0.5
@@ -11542,6 +11568,8 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^8.12.0
     "@typescript-eslint/parser": ^8.12.0
     body-scroll-lock: ^4.0.0-beta.0
+    class-variance-authority: ^0.7.1
+    clsx: ^2.1.1
     contentlayer2: 0.5.5
     cross-env: ^7.0.3
     esbuild: 0.25.2
@@ -11556,6 +11584,7 @@ __metadata:
     husky: ^9.0.0
     image-size: 2.0.1
     lint-staged: ^13.0.0
+    lucide-react: ^0.546.0
     next: 15.2.4
     next-contentlayer2: 0.5.5
     next-themes: ^0.4.6
@@ -11577,7 +11606,9 @@ __metadata:
     remark-gfm: ^4.0.0
     remark-github-blockquote-alert: ^1.2.1
     remark-math: ^6.0.0
+    tailwind-merge: ^3.3.1
     tailwindcss: ^4.0.5
+    tw-animate-css: ^1.4.0
     typescript: ^5.1.3
     unist-util-visit: ^5.0.0
   languageName: unknown
@@ -11731,6 +11762,13 @@ __metadata:
   version: 2.8.1
   resolution: "tslib@npm:2.8.1"
   checksum: e4aba30e632b8c8902b47587fd13345e2827fa639e7c3121074d5ee0880723282411a8838f830b55100cbe4517672f84a2472667d355b81e8af165a55dc6203a
+  languageName: node
+  linkType: hard
+
+"tw-animate-css@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "tw-animate-css@npm:1.4.0"
+  checksum: eb2b3b32f12e2f6973f4299564c470ab0145d89098f28cd238c97672b3b43b6c870e52ed46f41ea1a105504ecba20148ac0fded7f8992bbaad4bc1f1bbedbd43
   languageName: node
   linkType: hard
 
