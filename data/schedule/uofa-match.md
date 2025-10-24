@@ -4,8 +4,8 @@ date: 2025-10-20
 opponent: University of Arizona
 venue: ASU Recreation Complex
 note: Season opener - bring your school spirit!
-asuImage: /teams/asu.png
-opponentImage: /teams/uofa.png
+asuImage: /teams/ASUCC.jpg
+opponentImage: /teams/asu.png
 published: true
 ---
 

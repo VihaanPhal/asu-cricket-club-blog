@@ -5,8 +5,8 @@ opponent: NAU
 venue: Flagstaff
 result: W
 summary: ASU won by 32 runs after a disciplined bowling display in the death overs.
-asuImage: /teams/asu.png
-opponentImage: /teams/nau.png
+asuImage: /teams/ASUCC.jpg
+opponentImage: /teams/asu.png
 published: true
 ---
 

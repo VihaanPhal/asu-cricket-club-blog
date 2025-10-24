@@ -59,5 +59,18 @@ export const achievements: Achievement[] = [
       'Yeshwanth Sangishetty','Yuvraj Bhatia'
     ],
   },
+  {
+    id: 'aca-t20-div-b-2024-25',
+    date: '2024-2025',
+    position: 'Runners Up',
+    tournament: 'ACA Division B T20',
+    location: 'Phoenix, AZ',
+    team: [
+      'Maanas Lalwani (C)','Evin Hewageegana (VC)','Aadi Pathak','Adi Keshava Reddy','Pravar Chauhan',
+      'Aarav Kapoor','Amogh Dagar','Yuvraj Bhatia','Aditya Batra','Prajith Reddy',
+      'Abhishek Aggarwal','Anshul Kaithakkal','Shamin Naushad','Abdul Rehman','Keshava Olagappa',
+      'Udit Shahi','Varun','Snehith','Krishna'
+    ],
+  },
 ]
 

@@ -6,6 +6,7 @@ import { genPageMetadata } from 'app/seo'
 import AnnouncementsList from '@/components/home/AnnouncementsList'
 import ScheduleResultsTabs from '@/components/home/ScheduleResultsTabs'
 import AchievementsGrid from '@/components/home/AchievementsGrid'
+import SupportersSection from '@/components/home/SupportersSection'
 
 export const metadata = genPageMetadata({ title: 'About' })
 
@@ -33,6 +34,7 @@ export default function Page() {
       </section>
       
       <AchievementsGrid />
+      <SupportersSection />
     </>
   )
 }

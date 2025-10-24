@@ -12,8 +12,8 @@ export const schedule: ScheduleItem[] = [
     venue: 'TurtleRock',
     tournament: 'aca-winter-2025-26', // Winter Flurry
     note: 'League @ TurtleRock — Umpires: KCC Royals',
-    asuImage: '/teams/asu.jpg',
-    opponentImage: '/teams/acc-mambas.jpg',
+    asuImage: '/teams/ASUCC.jpg',
+    opponentImage: '/teams/vipers.jpg',
   },
 ]
 
@@ -30,8 +30,8 @@ export const results: ResultItem[] = [
     tournament: 'aca-platinum-2025-26',
     result: 'NR',
     summary: 'Abandoned — no result.',
-    asuImage: '/teams/asu.png',
-    opponentImage: '/teams/az-stallions.png',
+    asuImage: '/teams/ASUCC.jpg',
+    opponentImage: '/teams/Stallions.jpg',
   },
   {
     id: 'r-2025-10-04-yoddhas',
@@ -41,8 +41,8 @@ export const results: ResultItem[] = [
     tournament: 'aca-platinum-2025-26',
     result: 'W',
     summary: 'ASU CC 129/4 (19.0) beat Yoddhas 128/8 (20.0) — won by 6 wickets.',
-    asuImage: '/teams/asu.png',
-    opponentImage: '/teams/yoddhas.png',
+    asuImage: '/teams/ASUCC.jpg',
+    opponentImage: '/teams/Yoddhas.jpg',
   },
   {
     id: 'r-2025-09-27-phx-strikers',
@@ -52,8 +52,8 @@ export const results: ResultItem[] = [
     tournament: 'aca-platinum-2025-26',
     result: 'NR',
     summary: 'Abandoned — no result.',
-    asuImage: '/teams/asu.png',
-    opponentImage: '/teams/phx-strikers.png',
+    asuImage: '/teams/ASUCC.jpg',
+    opponentImage: '/teams/PHXStrikers.jpg',
   },
   {
     id: 'r-2025-09-21-kcc-cavaliers',
@@ -63,8 +63,8 @@ export const results: ResultItem[] = [
     tournament: 'aca-platinum-2025-26',
     result: 'W',
     summary: 'ASU CC 76/1 (6.5) beat KCC Cavaliers 75/7 (20.0) — won by 9 wickets.',
-    asuImage: '/teams/asu.png',
-    opponentImage: '/teams/kcc-cavaliers.png',
+    asuImage: '/teams/ASUCC.jpg',
+    opponentImage: '/teams/KCC.jpg',
   },
   {
     id: 'r-2025-09-13-spartans',
@@ -74,7 +74,7 @@ export const results: ResultItem[] = [
     tournament: 'aca-platinum-2025-26',
     result: 'W',
     summary: 'ASU CC 133/3 (15.5) beat Spartans 130/9 (20.0) — won by 7 wickets.',
-    asuImage: '/teams/asu.png',
-    opponentImage: '/teams/spartans.png',
+    asuImage: '/teams/ASUCC.jpg',
+    opponentImage: '/teams/Spartans.jpg',
   },
 ]

@@ -4,8 +4,8 @@ date: 2025-10-20
 opponent: UArizona
 venue: Tempe SDFC
 note: Rivalry week - arrive 30 mins early for warmups
-asuImage: /teams/asu.png
-opponentImage: /teams/uofa.png
+asuImage: /teams/ASUCC.jpg
+opponentImage: /teams/asu.png
 published: true
 ---
 

@@ -5,8 +5,8 @@ opponent: Northern Arizona University
 venue: ASU Cricket Grounds
 result: W
 summary: Dominant performance with both bat and ball
-asuImage: /teams/asu.png
-opponentImage: /teams/nau.png
+asuImage: /teams/ASUCC.jpg
+opponentImage: /teams/asu.png
 published: true
 ---
 

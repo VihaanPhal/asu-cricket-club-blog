@@ -40,7 +40,7 @@ export default function ScheduleResultsTabs() {
           {schedule.map(m => (
             <div key={m.id} className="rounded-xl border p-4 flex items-center gap-4">
               <Image
-                src={m.asuImage || getTeamLogo('ASU CC', '/teams/asu.jpg')}
+                src={m.asuImage || getTeamLogo('ASU CC', '/teams/ASUCC.jpg')}
                 alt="ASU CC"
                 width={44}
                 height={44}
@@ -70,7 +70,7 @@ export default function ScheduleResultsTabs() {
           {results.map(m => (
             <div key={m.id} className="rounded-xl border p-4 flex items-center gap-4">
               <Image
-                src={m.asuImage || getTeamLogo('ASU CC', '/teams/asu.jpg')}
+                src={m.asuImage || getTeamLogo('ASU CC', '/teams/ASUCC.jpg')}
                 alt="ASU CC"
                 width={44}
                 height={44}
